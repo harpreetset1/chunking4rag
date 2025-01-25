@@ -3,6 +3,9 @@ This repo will have various chunking strategies one can build in order to get be
 
 # To start with the project
 1. Clone the repository using git
-  `git clone https://github.com/rharpreetset1/chunk4rag.git`
+  
 2. Create a virtual environment using uv
-  `uv create chunk4rag`
+  ```
+  uv create chunking4rag
+  ```
+

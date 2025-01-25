@@ -1,5 +1,5 @@
 [project]
-name = "chunk4rag"
+name = "chunking4rag"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
