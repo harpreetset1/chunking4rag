@@ -13,13 +13,16 @@ wheels = [
 [[package]]
 name = "chunking4rag"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "pydantic" },
 ]
 
 [package.metadata]
 requires-dist = [{ name = "pydantic", specifier = ">=2.10.6" }]
+
+[package.metadata.requires-dev]
+dev = [{ name = "chunking4rag", editable = "." }]
 
 [[package]]
 name = "pydantic"

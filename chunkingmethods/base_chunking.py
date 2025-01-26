@@ -1,4 +1,4 @@
-from chunking_model import ChunkingInput 
+from model.chunking_model import ChunkingInput 
 from abc import ABC, abstractmethod
 
 

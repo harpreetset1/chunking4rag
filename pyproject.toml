@@ -7,3 +7,14 @@ requires-python = ">=3.12"
 dependencies = [
     "pydantic>=2.10.6",
 ]
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[dependency-groups]
+dev = [
+    "chunking4rag",
+]
+
+[tool.uv.sources]
+chunking4rag = { workspace = true }

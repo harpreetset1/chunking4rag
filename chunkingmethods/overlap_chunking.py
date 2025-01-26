@@ -1,5 +1,5 @@
-from base_chunking import Chunking
-from chunking_model import ChunkingInput
+from chunkingmethods.base_chunking import Chunking
+from model.chunking_model import ChunkingInput
 
 class OverlapChunking (Chunking):
     def __init__ (self, input_data: ChunkingInput):
@@ -27,7 +27,7 @@ class OverlapChunking (Chunking):
         for i in range(0, len(self.text), self.chunk_size- self.overlap_size):
             # Calculate the end position of the chunk
             chunk = self.text[i:i+ self. chunk_size]
-            chunks. append (chunk)
+            chunks.append (chunk)
             if (i + self. chunk_size - self.overlap_size) >= len(self.text):
                 break
         return chunks

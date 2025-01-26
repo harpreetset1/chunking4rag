@@ -1,5 +1,5 @@
-from base_chunking import Chunking
-from chunking_model import ChunkingInput
+from chunkingmethods.base_chunking import Chunking
+from model.chunking_model import ChunkingInput
 
 class AdaptiveChunking (Chunking):
     def __init__(self, input_data: ChunkingInput):
