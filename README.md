@@ -1,7 +1,13 @@
 # chunking4rag
 This repo will have various chunking strategies one can build in order to get best performance out of RAG framework
 
-# To start with the project
+# To install this library
+Run the following command
+```
+pip install chunking4rag
+```
+
+# To start with contribution to the project
 1. Clone the repository using git
   
 2. Create a virtual environment using uv
