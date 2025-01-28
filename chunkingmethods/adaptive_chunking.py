@@ -1,4 +1,4 @@
-from chunkingmethods.base_chunking import Chunking
+from chunkingmethods.fixed_length_chunking import Chunking
 from model.chunking_model import ChunkingInput
 
 class AdaptiveChunking (Chunking):
