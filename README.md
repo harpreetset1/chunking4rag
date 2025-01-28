@@ -8,4 +8,15 @@ This repo will have various chunking strategies one can build in order to get be
   ```
   uv create chunking4rag
   ```
-
+3. Activate the virtual environment
+  ```
+  uv activate chunking4rag
+  ```
+4. Install the dependencies by running
+  ```
+  uv install -r requirements.txt
+  ```
+5. Run tests to make sure everything is working fine
+  ```
+  python chuking_tests.py
+  ```
