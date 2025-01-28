@@ -1,6 +1,7 @@
 from chunkingmethods.base_chunking import Chunking
 from model.chunking_model import ChunkingInput
 from typing import List
+from nltk.tokenize import sent_tokenize
 
 class SentenceChunking(Chunking):
     """
@@ -27,5 +28,6 @@ class SentenceChunking(Chunking):
         Returns:
             List[str]: A list of text chunks, where each chunk is a sentence.
         """
-        sentences = self.text.split('. ')
+        #sentences = self.text.split('. ')
+        sentences = sent_tokenize(self.text)
         return sentences

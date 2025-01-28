@@ -1,7 +1,7 @@
 from model.chunking_model import ChunkingInput 
 from chunkingmethods.base_chunking import Chunking
 
-class BaseChunking (Chunking):
+class FixedLengthChunking (Chunking):
     def __init__(self, input_data: ChunkingInput):
         """
         Initialize the BaseChunking class.
