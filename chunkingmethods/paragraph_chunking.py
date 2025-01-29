@@ -5,6 +5,8 @@ from model.chunking_model import ChunkingInput
 class ParagraphChunking(Chunking):
     def __init__(self, input_data: ChunkingInput):
         super().__init__(input_data)
+        self.text = input_data.text
+        
 
     def chunk(self):
         paragraphs = []

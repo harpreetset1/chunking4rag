@@ -8,6 +8,6 @@ class Metadata(BaseModel) :
     
 class ChunkingInput(BaseModel):
     text: str
-    chunk_size: int = Field(..., description="Chunk size for chunking")
-    overlap_size: int = Field(..., description="Overlap size for chunking")
+    chunk_size: int = Field(description="Chunk size for chunking",default=100)
+    overlap_size: int = Field(description="Overlap size for chunking",default=20)
     metadata: Optional[Metadata] = Field(..., description="Metadata for chunking")
