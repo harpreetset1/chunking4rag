@@ -1,13 +1,40 @@
 [project]
 name = "chunking4rag"
-version = "0.1.0"
-description = "Add your description here"
+authors = [{ name = "Harpreet Sethi", email = "harpreetset@gmail.com" }]
+version = "0.0.1"
+description = "A small library to chunk large files into smaller arrays that can be used for generating RAG embeddings"
 readme = "README.md"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 requires-python = ">=3.12"
 dependencies = [
     "gensim>=4.3.3",
     "nltk>=3.9.1",
     "pydantic>=2.10.6",
+]
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+]
+formatting = [
+    "black",
+    "flake8",
+    "isort",
+]
+type-checking = [
+    "mypy",
+]
+docs = [
+    "pydocstyle",
+]
+publishing = [
+    "twine",
+    "wheel"
 ]
 [build-system]
 requires = ["setuptools", "wheel"]
