@@ -4,10 +4,13 @@ from chunkingmethods.base_chunking import Chunking
 class FixedLengthChunking (Chunking):
     def __init__(self, input_data: ChunkingInput):
         """
-        Initialize the BaseChunking class.
+        Initialize the FixedLengthChunking class.
+        The FixedLengthChunking class is a concrete implementation of the Chunking interface.
+        It divides the text into chunks of specified size.
+        
         Parameters
         input_data: ChunkingInput
-        The input data containing the text to be chunked.
+            The input data containing the text to be chunked.
         """
         super().__init__( input_data)
         self.chunk_size = input_data.chunk_size
