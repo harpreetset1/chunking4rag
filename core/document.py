@@ -1,12 +1,12 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
+from io import BytesIO
 from pathlib import PurePath
 from typing import Any, Literal, Optional, Union
 
 from pydantic import Field, field_validator
 
 
-PathLike = Union[str, PurePath]
 
 
 class BaseDocument(ABC):
@@ -38,10 +38,10 @@ class Document(BaseDocument):
             )
     """
 
-    page_content: str
+    page_content: Union[str, bytes] = Field()
     type: Literal["Document"] = "Document"
 
-    def __init__(self, page_content: str, **kwargs: Any) -> None:
+    def __init__(self, page_content: Union[str, bytes], **kwargs: Any) -> None:
         """Pass page_content in as positional or named arg."""
         # my-py is complaining that page_content is not defined on the base class.
         # Here, we're relying on pydantic base class to handle the validation.
@@ -176,6 +176,74 @@ class HTMLDocument(Document):
 
         new_document = Document(
             page_content=h.handle(self.page_content), metadata={**self.metadata}
+        )
+            
+        return new_document
+
+class PDFDocument(Document):
+    """Class for storing a piece of text data and associated metadata within pdf documents.
+
+    Example:
+
+        .. code-block:: python
+
+            from chunking4rag.core.documents import PDFDocument
+
+            document = PDFDocument(
+                page_content=b'Hello, world!',
+                metadata={"source": "https://example.com"}
+            )
+    """
+
+    type: Literal["PDFDocument"] = "PDFDocument"
+    page_content: bytes
+    def __init__(self, page_content: bytes, **kwargs: Any) -> None:
+        """
+        Initialize the PDFDocument instance with the given arguments.
+
+        Parameters
+        ----------
+        page_content : bytes
+            The PDF content to store in the document.
+        **kwargs
+            Additional keyword arguments to pass to the base class constructor.
+        """
+        super().__init__(page_content=page_content, **kwargs)
+
+    def get_page_content(self) -> Document:
+        """
+        Converts the PDF content stored in the document to plain text using the pdfminer library.
+
+        This method initializes a PDFMiner object to convert the PDF content (`page_content`)
+        to plain text.
+
+        Returns
+        -------
+        Document
+            A new Document instance containing the converted plain text and the existing metadata.
+
+        Raises
+        ------
+        ImportError
+            If the pdfminer package is not installed.
+        """
+
+        try:
+            from PyPDF2 import PdfReader
+            import io
+        except ImportError:
+            raise ImportError(
+                """PyPDF2 package not found, please 
+                install it with `pip install PyPDF2`"""
+            )
+        content =""
+        for page in PdfReader(io.BytesIO(self.page_content)).pages:
+            content += page.extractText()
+
+        # Create a html2text.HTML2Text object and override some properties
+        new_document = Document(
+            page_content=content,
+            metadata={**self.metadata},
         )
             
         return new_document
