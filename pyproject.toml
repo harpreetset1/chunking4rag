@@ -13,6 +13,7 @@ classifiers = [
 requires-python = ">=3.12"
 dependencies = [
     "gensim>=4.3.3",
+    "html2text>=2024.2.26",
     "nltk>=3.9.1",
     "pydantic>=2.10.6",
 ]
