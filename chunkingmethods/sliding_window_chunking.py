@@ -1,6 +1,6 @@
 from chunkingmethods.base_chunking import Chunking
 from model.chunking_model import ChunkingInput
-
+from typing import List
 class OverlapChunking (Chunking):
     def __init__ (self, input_data: ChunkingInput):
         """
@@ -13,7 +13,7 @@ class OverlapChunking (Chunking):
         self.chunk_size = input_data.chunk_size
         self.overlap_size = input_data.overlap_size
 
-    def chunk(self):
+    def chunk(self) -> List[str]:
         """
         Divides the text into overlapping chunks of specified size.
         This method iterates over the text, creating a list of chunks where each 

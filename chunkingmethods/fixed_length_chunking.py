@@ -1,6 +1,6 @@
 from model.chunking_model import ChunkingInput 
 from chunkingmethods.base_chunking import Chunking
-
+from typing import List
 class FixedLengthChunking (Chunking):
     def __init__(self, input_data: ChunkingInput):
         """
@@ -15,7 +15,7 @@ class FixedLengthChunking (Chunking):
         super().__init__( input_data)
         self.chunk_size = input_data.chunk_size
         
-    def chunk(self):
+    def chunk(self) -> List[str]:
         """
         Divides the text into chunks of specified size.
         This method iterates over the text, creating a list of chunks 

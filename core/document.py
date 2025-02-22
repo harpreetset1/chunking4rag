@@ -1,7 +1,5 @@
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from io import BytesIO
-from pathlib import PurePath
 from typing import Any, Literal, Optional, Union
 
 from pydantic import Field, field_validator
@@ -20,7 +18,7 @@ class BaseDocument(ABC):
         else:
             return id_value
     @abstractmethod
-    def get_page_content(self) -> Document:
+    def get_content(self) -> Document:
         raise NotImplementedError
 
 class Document(BaseDocument):
@@ -67,8 +65,8 @@ class Document(BaseDocument):
         else:
             return f"page_content='{self.page_content}'"
         
-    def get_page_content(self) -> Document:
-        return self   
+    def get_content(self) -> Document:
+        return self
 
 class TextDocument(Document):
     """Class for storing a piece of text and associated metadata.
@@ -92,7 +90,7 @@ class TextDocument(Document):
         # Here, we're relying on pydantic base class to handle the validation.
         super().__init__(page_content=page_content, **kwargs)  # type: ignore[call-arg]
 
-    def get_page_content(self) -> Document:
+    def get_content(self) -> Document:
         """
         Returns the current instance of the document.
 
@@ -143,7 +141,7 @@ class HTMLDocument(Document):
         self.ignore_images = ignore_images
         super().__init__(page_content=page_content, **kwargs)
 
-    def get_page_content(self) -> Document:
+    def get_content(self) -> Document:
         """
         Converts the HTML content stored in the document to plain text using the html2text library.
 
@@ -210,7 +208,7 @@ class PDFDocument(Document):
         """
         super().__init__(page_content=page_content, **kwargs)
 
-    def get_page_content(self) -> Document:
+    def get_content(self) -> Document:
         """
         Converts the PDF content stored in the document to plain text using the pdfminer library.
 

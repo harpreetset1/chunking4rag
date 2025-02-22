@@ -1,17 +1,15 @@
-from nltk.tokenize import word_tokenize
+from typing import List
 from nltk.corpus import stopwords
 from string import punctuation
 from nltk.stem import WordNetLemmatizer
 import nltk 
 import gensim
 from gensim.corpora import Dictionary
-from gensim.models import LdaModel, LdaMulticore
-from gensim.matutils import corpus2csc
-from nltk import sent_tokenize
-
+from gensim.models import LdaMulticore
 from chunkingmethods.base_chunking import Chunking
 from chunkingmethods.paragraph_chunking import ParagraphChunking
 from model.chunking_model import ChunkingInput
+
 class KeywordsChunking(Chunking):
     """
     A class that creates extracts keywords from input text and returns them as chunks.
@@ -54,12 +52,12 @@ class KeywordsChunking(Chunking):
             for k in keywords[1].split("+"):
                 d[k.strip().split("*")[1]]=""
                 
-        w = d.keys()
+        w = list(d.keys())
         print(w)
         return w
         
 
-    def chunk(self):
+    def chunk(self) -> List[str]:
         """
         Extracts keywords from input text and returns them as chunks.
         Returns

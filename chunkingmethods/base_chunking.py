@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from model.chunking_model import ChunkingInput
-
+from typing import List
 class Chunking (ABC):
     def __init__(self, input_data: ChunkingInput):
         """
@@ -12,5 +12,5 @@ class Chunking (ABC):
         """
         self.text = input_data.text
     @abstractmethod 
-    def chunk(self):
+    def chunk(self) -> List[str]:
         pass

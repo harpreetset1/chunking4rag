@@ -1,7 +1,7 @@
 from nltk.tokenize import sent_tokenize
 from chunkingmethods.base_chunking import Chunking
 from model.chunking_model import ChunkingInput
-
+from typing import List
 class ParagraphChunking(Chunking):
     def __init__(self, input_data: ChunkingInput):
         """
@@ -15,7 +15,7 @@ class ParagraphChunking(Chunking):
         self.text = input_data.text
         
 
-    def chunk(self):
+    def chunk(self) -> List[str]:
         """
         Break a textual input into chunks of paragraphs.
 
