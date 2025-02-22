@@ -1,7 +1,7 @@
 [project]
 name = "chunking4rag"
 authors = [{ name = "Harpreet Sethi", email = "harpreetset@gmail.com" }]
-version = "0.0.2"
+version = "0.0.3"
 description = "A small library to chunk large files into smaller arrays that can be used for generating RAG embeddings"
 readme = "README.md"
 classifiers = [
