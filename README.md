@@ -16,7 +16,7 @@ pip install chunking4rag
   ```
 3. Activate the virtual environment
   ```
-  uv activate chunking4rag
+  source .venv/bin/activate
   ```
 4. Install the dependencies by running
   ```
