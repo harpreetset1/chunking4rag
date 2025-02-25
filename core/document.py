@@ -37,7 +37,7 @@ class Document(BaseDocument):
     """
 
     page_content: Union[str, bytes] = Field()
-    type: Literal["Document"] = "Document"
+    doc_type: Union[TextDocument, PDFDocument, HTMLDocument] 
 
     def __init__(self, page_content: Union[str, bytes], **kwargs: Any) -> None:
         """Pass page_content in as positional or named arg."""
