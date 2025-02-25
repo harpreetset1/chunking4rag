@@ -2,7 +2,8 @@ from chunkingmethods.base_chunking import Chunking
 from model.chunking_model import ChunkingInput
 from typing import List
 from nltk.tokenize import sent_tokenize
-
+import nltk
+nltk.download('punkt_tab')
 class SentenceChunking(Chunking):
     """
     A class that will break a textual input into chunks of sentences.
