@@ -23,8 +23,7 @@ from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput
 
 
-text_content = "Sample text content"
-html_content = "<p>Sample HTML content</p>"
+text_content = "Sample text content. This is a test. It has multiple sentences. It also has some punctuation."
 
 
 text_document = Document(doc_type={"kind":"TextDocument"}).doc_type
@@ -38,6 +37,7 @@ data = ChunkingInput(
 sentence_chunking = SentenceChunking(self.input_data)
 chunks = sentence_chunking.chunk()
 
+# for pdf document data extraction use the following
 pdf_document = Document(doc_type={"kind":"PDFDocument"}).doc_type
 with open("test.pdf", "rb") as f:
     extracted_content = pdf_document.get_content(f.read())
