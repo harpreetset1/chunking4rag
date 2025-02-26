@@ -1,7 +1,7 @@
 import unittest
 from core.document import Document
 from chunkingmethods.sentence_chunking import SentenceChunking
-from model.chunking_model import ChunkingInput, Metadata
+from chunkingmodel.chunking_model import ChunkingInput, Metadata
 from chunkingmethods.fixed_length_chunking import FixedLengthChunking
 from chunkingmethods.sliding_window_chunking import OverlapChunking
 from chunkingmethods.keywords_chunking import KeywordsChunking

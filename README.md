@@ -13,6 +13,38 @@ The strategies discussed in this repo are:
   
 6. [Sentence chunking](./chunkingmethods/sentence_chunking.py)
   
+# To use the library
+The library is quite simple to use. Below example uses sentence chunking by extraction from text data
+
+```python
+
+from core.document import Document
+from chunkingmethods.sentence_chunking import SentenceChunking
+from chunkingmodel.chunking_model import ChunkingInput
+
+
+text_content = "Sample text content"
+html_content = "<p>Sample HTML content</p>"
+
+
+text_document = Document(doc_type={"kind":"TextDocument"}).doc_type
+content = text_document.get_content(text_content))
+data = ChunkingInput(
+            text="This is a test text to chunk.",
+            chunk_size=5,
+            overlap_size=2,
+            metadata=None  # Assuming metadata is optional for the test
+        )
+sentence_chunking = SentenceChunking(self.input_data)
+chunks = sentence_chunking.chunk()
+
+pdf_document = Document(doc_type={"kind":"PDFDocument"}).doc_type
+with open("test.pdf", "rb") as f:
+    extracted_content = pdf_document.get_content(f.read())
+print(extracted_content)
+
+```
+
 # To install this library
 Run the following command
 ```

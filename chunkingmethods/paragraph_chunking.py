@@ -1,6 +1,6 @@
 from nltk.tokenize import sent_tokenize
 from chunkingmethods.base_chunking import Chunking
-from model.chunking_model import ChunkingInput
+from chunkingmodel.chunking_model import ChunkingInput
 from typing import List
 class ParagraphChunking(Chunking):
     def __init__(self, input_data: ChunkingInput):

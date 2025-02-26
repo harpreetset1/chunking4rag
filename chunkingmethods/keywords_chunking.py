@@ -8,7 +8,7 @@ from gensim.corpora import Dictionary
 from gensim.models import LdaMulticore
 from chunkingmethods.base_chunking import Chunking
 from chunkingmethods.paragraph_chunking import ParagraphChunking
-from model.chunking_model import ChunkingInput
+from chunkingmodel.chunking_model import ChunkingInput
 
 class KeywordsChunking(Chunking):
     """
