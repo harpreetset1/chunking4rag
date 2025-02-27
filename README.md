@@ -23,19 +23,25 @@ from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput
 
 
-text_content = "Sample text content. This is a test. It has multiple sentences. It also has some punctuation."
+from core.document import Document
+from chunkingmethods.sentence_chunking import SentenceChunking
+from chunkingmodel.chunking_model import ChunkingInput
 
 
-text_document = Document(doc_type={"kind":"TextDocument"}).doc_type
-content = text_document.get_content(text_content))
+text_content = "<html><body><p>Sample text content. This is a test. It has multiple sentences. It also has some punctuation.</p></body></html>"
+
+
+text_document = Document(doc_type={"kind":"HTMLDocument"}).doc_type
+content = text_document.get_content(text_content)
 data = ChunkingInput(
-            text="This is a test text to chunk.",
+            text=content,
             chunk_size=5,
             overlap_size=2,
             metadata=None  # Assuming metadata is optional for the test
         )
-sentence_chunking = SentenceChunking(self.input_data)
+sentence_chunking = SentenceChunking(data)
 chunks = sentence_chunking.chunk()
+print(chunks)
 
 # for pdf document data extraction use the following
 pdf_document = Document(doc_type={"kind":"PDFDocument"}).doc_type
