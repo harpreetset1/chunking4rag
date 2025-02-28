@@ -1,5 +1,5 @@
 import unittest
-from core.document import Document
+from chunkingparser.document import Document
 from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput, Metadata
 from chunkingmethods.fixed_length_chunking import FixedLengthChunking
