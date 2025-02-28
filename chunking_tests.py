@@ -91,8 +91,9 @@ class TestChunking(unittest.TestCase):
         with open("test.pdf", "rb") as f:
             extracted_content = pdf_document.get_content(f.read())
         # Assuming the PDF content extraction works correctly
-        self.assertIn("Sample text content", extracted_content)
+        self.assertIn("Sample text content This is test content for PDF", extracted_content)
 
+    # Assuming the PDF content extraction works correctly
 
 if __name__ == '__main__':
     unittest.main()
