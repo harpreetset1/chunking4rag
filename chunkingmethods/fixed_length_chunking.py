@@ -13,7 +13,10 @@ class FixedLengthChunking (Chunking):
             The input data containing the text to be chunked.
         """
         super().__init__( input_data)
-        self.chunk_size = input_data.chunk_size
+        if input_data.chunk_size is None:
+            raise ValueError("Chunk size is required for fixed length chunking")
+        else:
+            self.chunk_size = input_data.chunk_size
         
     def chunk(self) -> List[str]:
         """

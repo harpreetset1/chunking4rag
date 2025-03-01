@@ -2,3 +2,7 @@ pydantic
 nltk
 gensim
 html2text
+PyPDF2
+polars
+pytesseract
+pillow

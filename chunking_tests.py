@@ -1,5 +1,5 @@
 import unittest
-from chunkingparser.document import Document
+from data_extraction.document import Document
 from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput, Metadata
 from chunkingmethods.fixed_length_chunking import FixedLengthChunking
@@ -92,8 +92,12 @@ class TestChunking(unittest.TestCase):
             extracted_content = pdf_document.get_content(f.read())
         # Assuming the PDF content extraction works correctly
         self.assertIn("Sample text content This is test content for PDF", extracted_content)
-
-    # Assuming the PDF content extraction works correctly
+        
+        image_doc = Document(doc_type={"kind":"ImageDocument"}).doc_type
+        with open("test.png", "rb") as f:
+            extracted_content = image_doc.get_content(f.read())
+        # Assuming the PDF content extraction works correctly
+        self.assertIn("""BLACK\nFRIDAY\nDEALS\n\nBRAND NEW!\n\nLIMITED TIME TRIAL PACKS\n""", extracted_content)
 
 if __name__ == '__main__':
     unittest.main()
