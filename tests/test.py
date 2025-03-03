@@ -4,7 +4,7 @@ from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput
 
 
-from chunking4rag.data_extraction.document_parser import Document
+from data_extraction.document_parser import Document
 from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput
 
