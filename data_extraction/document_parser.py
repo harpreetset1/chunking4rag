@@ -1,8 +1,9 @@
 from __future__ import annotations
 from typing import Literal
-
 from pydantic import BaseModel
-class Document(BaseModel):
+from chunkingmodel.document import Document, Page
+
+class BaseDocumentType(BaseModel):
     """Class for storing a piece of text and associated metadata.
 
     
@@ -28,7 +29,7 @@ class TextDocument(BaseModel):
 
     kind: Literal['TextDocument'] 
  
-    def get_content(self, page_content: str) -> str:
+    def get_content(self, page_content: str) -> Document:
         """
         Retrieves the content of the HTML document.
 
@@ -45,7 +46,8 @@ class TextDocument(BaseModel):
         str
             The content of the HTML document.
         """
-        return page_content
+        p = Page(textual_content=page_content)
+        return Document(pages=[p])
     
 class HTMLDocument(BaseModel):
     """Class for extracting a piece of text data and associated metadata within html documents.
@@ -65,7 +67,7 @@ class HTMLDocument(BaseModel):
     
 
 
-    def get_content(self, page_content: str, ignore_links: bool = True, ignore_images: bool = True) -> str:
+    def get_content(self, page_content: str, ignore_links: bool = True, ignore_images: bool = True) -> Document:
         """
         Convert HTML content to plain text.
 
@@ -105,7 +107,9 @@ class HTMLDocument(BaseModel):
         h.ignore_images = ignore_images
 
         new_document = h.handle(page_content)
-        return new_document
+        p = Page(textual_content=new_document)
+        return Document(pages=[p])
+        
 
 class PDFDocument(BaseModel):
     """Class for extracting a piece of text data and associated metadata within pdf documents.
@@ -123,7 +127,7 @@ class PDFDocument(BaseModel):
 
     kind: Literal['PDFDocument']
     
-    def get_content(self, page_content: bytes) -> str:
+    def get_content(self, page_content: bytes) -> Document:
         """
         Extract the text content from a PDF byte stream.
 
@@ -147,7 +151,7 @@ class PDFDocument(BaseModel):
         """
 
         try:
-            from PyPDF2 import PdfReader
+            from pypdf import PdfReader
             import io
         except ImportError:
             raise ImportError(
@@ -156,10 +160,15 @@ class PDFDocument(BaseModel):
             )
 
         content = ""
+        pages = []
         for page in PdfReader(io.BytesIO(page_content)).pages:
             content += page.extract_text()
 
-        return content
+            p = Page(textual_content=content)  
+            pages.append(p)
+        
+        d = Document(pages=pages)  
+        return d
 
 
 class ImageDocument(BaseModel):
@@ -178,7 +187,7 @@ class ImageDocument(BaseModel):
 
     kind: Literal['ImageDocument']
     
-    def get_content(self, page_content: bytes) -> str:
+    def get_content(self, page_content: bytes) -> Document:
         """
         Extract the text content from an image byte stream using OCR.
 
@@ -213,6 +222,7 @@ class ImageDocument(BaseModel):
 
         image = Image.open(io.BytesIO(page_content))
         content = pytesseract.image_to_string(image)
-
-        return content
+        p = Page(textual_content=content)
+        d = Document(pages=[p])
+        return d
 
