@@ -24,7 +24,6 @@ from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput
 
 
-from data_extraction.document_parser import Document
 from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput
 
