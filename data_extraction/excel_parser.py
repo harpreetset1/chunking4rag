@@ -1,7 +1,9 @@
 import polars as pl
-from typing import List, Optional
+from typing import List, Literal
 
-class ExcelDataExtractor:
+from pydantic import BaseModel
+
+class ExcelParser(BaseModel):
     def __init__(self, file_path: str):
         """
         Initialize the ExcelDataExtractor class.
@@ -14,6 +16,7 @@ class ExcelDataExtractor:
         self.file_path = file_path
         self.excel_data = pl.read_excel(file_path)
 
+        kind:Literal["ExcelDataExtractor"]
     def extract_column(self, column_name: str) -> List:
         """
         Extract data from a specific column.

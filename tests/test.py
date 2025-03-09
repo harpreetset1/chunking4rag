@@ -15,10 +15,7 @@ text_document = BaseDocumentType(doc_type={"kind":"HTMLDocument"}).doc_type
 content = text_document.get_content(text_content).pages[0].textual_content
 data = ChunkingInput(
             text=content,
-            chunk_size=5,
-            overlap_size=2,
-            metadata=None  # Assuming metadata is optional for the test
-        )
+            )
 sentence_chunking = SentenceChunking(data)
 chunks = sentence_chunking.chunk()
 print(chunks)

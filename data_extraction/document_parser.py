@@ -3,13 +3,13 @@ from typing import Literal
 from pydantic import BaseModel
 from chunkingmodel.document import Document, Page
 
-class BaseDocumentType(BaseModel):
+class DcoumentParser(BaseModel):
     """Class for storing a piece of text and associated metadata.
 
     
     """
 
-    doc_type:TextDocument | PDFDocument | HTMLDocument | ImageDocument
+    doc_type:TextDocument | PDFDocument | HTMLDocument 
 
             
 
@@ -171,58 +171,4 @@ class PDFDocument(BaseModel):
         return d
 
 
-class ImageDocument(BaseModel):
-    """Class for extracting a piece of text data and associated metadata within image documents.
-
-    Example:
-
-        .. code-block:: python
-
-            from core.documents import Document
-
-            document = Document(
-                doc_type={"kind":"PDFDocument"}
-            )
-    """
-
-    kind: Literal['ImageDocument']
-    
-    def get_content(self, page_content: bytes) -> Document:
-        """
-        Extract the text content from an image byte stream using OCR.
-
-        This method uses the pytesseract library to perform OCR on the image byte stream
-        and returns the extracted text as a string.
-
-        Parameters
-        ----------
-        page_content : bytes
-            The image content to extract the text from.
-
-        Returns
-        -------
-        str
-            The extracted text content.
-
-        Raises
-        ------
-        ImportError
-            If the pytesseract or PIL library is not installed.
-        """
-
-        try:
-            from PIL import Image
-            import pytesseract
-            import io
-        except ImportError:
-            raise ImportError(
-                """pytesseract or PIL package not found, please 
-                install them with `pip install pytesseract pillow`"""
-            )
-
-        image = Image.open(io.BytesIO(page_content))
-        content = pytesseract.image_to_string(image)
-        p = Page(textual_content=content)
-        d = Document(pages=[p])
-        return d
 
