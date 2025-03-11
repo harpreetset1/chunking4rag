@@ -2,6 +2,8 @@ from __future__ import annotations
 from typing import Literal
 from pydantic import BaseModel
 from chunkingmodel.document import Document, Page
+from data_extraction.excel_parser import ExcelDocument
+from data_extraction.image_parser import ImageDocument
 
 class DcoumentParser(BaseModel):
     """Class for storing a piece of text and associated metadata.
@@ -9,7 +11,7 @@ class DcoumentParser(BaseModel):
     
     """
 
-    doc_type:TextDocument | PDFDocument | HTMLDocument 
+    doc_type:TextDocument | PDFDocument | HTMLDocument | ExcelDocument | ImageDocument
 
             
 

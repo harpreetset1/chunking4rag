@@ -1,20 +1,18 @@
-from langchain.llms import OpenAI
-from langchain.text_splitter import CharacterTextSplitter
-from langchain.chains import LLMChain
+import io
 from PIL import Image
+from typing import IO, Literal
 
-class ImageParser:
+from pydantic import BaseModel
+
+class ImageDocument(BaseModel):
     """
     Class for extracting textual data from an image using pytesseract 
     and generating information on image using LLM.
     """
 
-    def __init__(self):
-        self.llm = OpenAI(temperature=0.9)
-        self.splitter = CharacterTextSplitter(chunk_size=2000, chunk_overlap=0)
-        self.chain = LLMChain(llm=self.llm, input_key="question", output_key="answer", splitter=self.splitter)
-
-    def parse_image(self, image_path: str) -> str:
+    kind: Literal['ImageDocument'] 
+    
+    def get_content(self, image:bytes ) -> str:
         """
         Extract textual data from an image using pytesseract.
         """
@@ -27,14 +25,16 @@ class ImageParser:
                 install them with `pip install pytesseract pillow`"""
             )
 
-        image = Image.open(image_path)
-        content = pytesseract.image_to_string(image)
+        img = Image.open(io.BytesIO(image))
+        content = pytesseract.image_to_string(img)
         return content
 
-    def generate_info(self, image_path: str) -> str:
+    def parse_image(self, image_path: str) -> str:
         """
         Generate information on image using LLM.
         """
         question = f"Describe the image at {image_path}"
-        result = self.chain.run(question)
+        "use LLM of your choice to generate information on image"
+       
+        result = "This is a description of the image"
         return result

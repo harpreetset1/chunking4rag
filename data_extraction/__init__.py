@@ -3,8 +3,8 @@
 # so that they can be accessed directly from the core module
 
 from .document_parser import DcoumentParser, TextDocument, PDFDocument, HTMLDocument
-from .excel_parser import ExcelParser
+from .excel_parser import ExcelDocument
+from .image_parser import ImageDocument
 
-
-__all__ = ["DcoumentParser", "TextDocument", "PDFDocument", "HTMLDocument", "ExcelParser"]
+__all__ = ["DcoumentParser", "TextDocument", "PDFDocument", "HTMLDocument", "ExcelDocument", "ImageDocument"]
 

@@ -1,5 +1,13 @@
 # chunking4rag
-This repo will have various chunking strategies one can build in order to get best performance out of RAG framework
+For implementing a good RAG framework, we need 3 steps:
+1. Data Ingestion/ Parsing
+2. Chunking
+3. Embedding/ Vectorization
+
+Data Ingestion is a important steps where we extract data from a document. Aa document can be available in various formats like text, pdf, excel, csv or even Images. The data_extraction folder contains classes to extract data from different types of documents.
+
+Chunking is the process of breaking up a document into smaller chunks. The chunking methods are implemented in the chunkingmethods folder.
+
 The strategies discussed in this repo are:
 1. [Fixed length chunking](./chunkingmethods/fixed_length_chunking.py)
   
@@ -12,6 +20,8 @@ The strategies discussed in this repo are:
 5. [Paragraph chunking](./chunkingmethods/paragraph_chunking.py)
   
 6. [Sentence chunking](./chunkingmethods/sentence_chunking.py)
+
+Embedding is the process of converting text into vectors. The embedding methods are implemented in the embeddingmethods folder.
   
 # To use the library
 The library is quite simple to use. Below example uses sentence chunking by extraction from text data
@@ -20,10 +30,6 @@ The library is quite simple to use. Below example uses sentence chunking by extr
 
 
 from data_extraction.document_parser import DocumentParser
-from chunkingmethods.sentence_chunking import SentenceChunking
-from chunkingmodel.chunking_model import ChunkingInput
-
-
 from chunkingmethods.sentence_chunking import SentenceChunking
 from chunkingmodel.chunking_model import ChunkingInput
 

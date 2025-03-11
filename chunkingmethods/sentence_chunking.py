@@ -3,7 +3,7 @@ from chunkingmodel.chunking_model import ChunkingInput
 from typing import List
 from nltk.tokenize import sent_tokenize
 import nltk
-nltk.download('punkt_tab')
+
 
 class SentenceChunking(Chunking):
     """
@@ -30,6 +30,7 @@ class SentenceChunking(Chunking):
         Returns:
             List[str]: A list of text chunks, where each chunk is a sentence.
         """
+        nltk.download('punkt_tab')
         #sentences = self.text.split('. ')
         sentences = sent_tokenize(self.text)
         return sentences

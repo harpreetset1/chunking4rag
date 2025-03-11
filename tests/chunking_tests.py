@@ -93,11 +93,11 @@ class TestChunking(unittest.TestCase):
         # Assuming the PDF content extraction works correctly
         self.assertIn("Sample text content This is test content for PDF", extracted_content.pages[0].textual_content)
         
-        # image_doc = DcoumentParser(doc_type={"kind":"ImageDocument"}).doc_type
-        # with open("test.png", "rb") as f:
-        #     extracted_content = image_doc.get_content(f.read())
-        # # Assuming the PDF content extraction works correctly
-        # self.assertIn("""BLACK\nFRIDAY\nDEALS\n\nBRAND NEW!\n\nLIMITED TIME TRIAL PACKS\n""", extracted_content.pages[0].textual_content)
+        image_doc = DcoumentParser(doc_type={"kind":"ImageDocument"}).doc_type
+        with open("test.png", "rb") as f:
+            extracted_content = image_doc.get_content(f.read())
+        # Assuming the PDF content extraction works correctly
+        self.assertIn("""BLACK\nFRIDAY\nDEALS\n\nBRAND NEW!\n\nLIMITED TIME TRIAL PACKS\n""", extracted_content)
 
 if __name__ == '__main__':
     unittest.main()
