@@ -1,7 +1,10 @@
+import sys
+sys.path.append('/Users/harpreet.sethi/projects/chunking4rag')
+
 import unittest
-from data_extraction.document_parser import DcoumentParser
+from chunking4rag.data_extraction.document_parser import DcoumentParser
 from chunkingmethods.sentence_chunking import SentenceChunking
-from chunkingmodel.chunking_model import ChunkingInput, Metadata
+from chunkingdatamodel.chunking_model import ChunkingInput
 from chunkingmethods.fixed_length_chunking import FixedLengthChunking
 from chunkingmethods.sliding_window_chunking import OverlapChunking
 from chunkingmethods.keywords_chunking import KeywordsChunking

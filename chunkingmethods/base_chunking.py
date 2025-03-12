@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from chunkingmodel.chunking_model import ChunkingInput
+from chunkingdatamodel.chunking_model import ChunkingInput
 from typing import List
 class Chunking (ABC):
     def __init__(self, input_data: ChunkingInput):

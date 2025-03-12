@@ -8,7 +8,7 @@ from gensim.corpora import Dictionary
 from gensim.models import LdaMulticore
 from chunkingmethods.base_chunking import Chunking
 from chunkingmethods.paragraph_chunking import ParagraphChunking
-from chunkingmodel.chunking_model import ChunkingInput
+from chunkingdatamodel.chunking_model import ChunkingInput
 
 class KeywordsChunking(Chunking):
     """
@@ -34,7 +34,7 @@ class KeywordsChunking(Chunking):
 
         #function to lemmatize and remove stopwords from the text data
     def preprocess(self, text):
-        input_data = ChunkingInput(text=text,metadata=None)
+        input_data = ChunkingInput(text=text)
         chunk = ParagraphChunking(input_data)
         sentences = chunk.chunk()
         words=[]

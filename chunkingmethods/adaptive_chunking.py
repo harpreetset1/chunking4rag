@@ -1,5 +1,5 @@
 from chunkingmethods.fixed_length_chunking import Chunking
-from chunkingmodel.chunking_model import ChunkingInput
+from chunkingdatamodel.chunking_model import ChunkingInput
 
 class AdaptiveChunking (Chunking):
     def __init__(self, input_data: ChunkingInput):
@@ -12,7 +12,19 @@ class AdaptiveChunking (Chunking):
         super().__init__(input_data)
         if(input_data.metadata is None):
             raise ValueError("Metadata is required for adaptive chunking")
-        self.metadata = input_data.metadata
+        
+        if(input_data.start_size is None):
+            raise ValueError("Start size is required for adaptive chunking")
+        else:
+            self.start_size = input_data.start_size
+        if(input_data.step_size is None):
+            raise ValueError("Step size is required for adaptive chunking")
+        else:
+            self.step_size = input_data.step_size
+        if(input_data.incremental is None):
+            raise ValueError("Incremental is required for adaptive chunking")
+        else:
+            self.incremental = input_data.incremental
     def chunk(self) :
         """
         Divides the text into chunks using the provided metadata and adaptive chunking strategy:
@@ -26,15 +38,15 @@ class AdaptiveChunking (Chunking):
         A list of text chunks.
         """
         chunks = []
-        current_size = self.metadata.start_size
+        current_size = self.start_size
         i = 0
         while i < len (self.text):
             chunk = self.text[i:i + current_size]
             chunks.append(chunk)
             i += current_size
-            if self.metadata.incremental:
-                current_size += self.metadata.step_size
+            if self.incremental:
+                current_size += self.step_size
             else:
-                current_size = max(self.metadata.start_size, current_size - self.metadata.step_size) 
+                current_size = max(self.start_size, current_size - self.step_size) 
         
         return chunks

@@ -1,5 +1,5 @@
 from chunkingmethods.base_chunking import Chunking
-from chunkingmodel.chunking_model import ChunkingInput
+from chunkingdatamodel.chunking_model import ChunkingInput
 from typing import List
 from nltk.tokenize import sent_tokenize
 import nltk

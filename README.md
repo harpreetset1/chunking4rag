@@ -31,7 +31,7 @@ The library is quite simple to use. Below example uses sentence chunking by extr
 
 from data_extraction.document_parser import DocumentParser
 from chunkingmethods.sentence_chunking import SentenceChunking
-from chunkingmodel.chunking_model import ChunkingInput
+from chunkingdatamodel.chunking_model import ChunkingInput
 
 
 text_content = "<html><body><p>Sample text content. This is a test. It has multiple sentences. It also has some punctuation.</p></body></html>"

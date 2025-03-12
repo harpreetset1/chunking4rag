@@ -1,5 +1,5 @@
 import polars as pl
-from chunkingmodel.chunking_model import ChunkingInput 
+from chunkingdatamodel.chunking_model import ChunkingInput 
 from chunkingmethods.base_chunking import Chunking
 from typing import List
 
