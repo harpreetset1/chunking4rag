@@ -1,6 +1,3 @@
-import sys
-sys.path.append('/Users/harpreet.sethi/projects/chunking4rag')
-
 import unittest
 from chunking4rag.data_extraction.document_parser import DcoumentParser
 from chunkingmethods.sentence_chunking import SentenceChunking
